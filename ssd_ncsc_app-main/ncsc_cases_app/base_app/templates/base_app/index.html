@@ -1,0 +1,59 @@
+{% extends 'base_app/base.html' %} {% block title %}Main page{% endblock %}
+{%block content %}
+
+<div class="flex flex-col items-center justify-center h-screen bg-gray-100">
+  <div class="bg-white rounded-lg p-8 shadow-lg mb-8">
+    <img
+      src="https://allvectorlogo.com/img/2019/08/national-cyber-security-centre-ncsc-logo-vector.png"
+      class="h-40"
+      alt="Logo"
+    />
+  </div>
+
+  <h1 class="text-4xl font-bold mb-4 text-center">
+    Welcome to the Dutch National Cybersecurity Centre Cybercrime Repository
+  </h1>
+
+  <div class="bg-white rounded-lg p-8 shadow-lg">
+    {% if user.is_authenticated %}
+    <h2 class="text-2xl mb-4">
+      Welcome, {{ user.first_name }} {{ user.last_name }}!
+    </h2>
+    <p>Last Login: {{ user.last_login }}</p>
+    {% else %}
+    <p class="text-center">
+      If you are an NCSC officer, please
+      <a href="{% url 'login' %}" class="text-blue-500 underline">Login</a>
+    </p>
+    <p class="text-center">
+      If you are a civilian, please use the buttons below or the navigation bar
+    </p>
+    {% endif %}
+  </div>
+
+  <div class="mt-8 space-x-4">
+    {% if user.is_authenticated %}
+    <a
+      href="{% url 'cvd_service:cvd_list' %}"
+      class="rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-500"
+    >
+      Go to CVD page
+    </a>
+    {% else %}
+    <a
+      href="{% url 'cvd_service:create_cvd' %}"
+      class="rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-500"
+    >
+      Submit Coordinated Vulnerability Disclosure Report
+    </a>
+    {% endif %}
+    <a
+      href="{% url 'cases_service:case_list' %}"
+      class="rounded-md bg-indigo-600 px-4 py-2 text-white font-semibold hover:bg-indigo-500"
+    >
+      View list of currently active cases
+    </a>
+  </div>
+</div>
+
+{% endblock %}

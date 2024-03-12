@@ -1,0 +1,87 @@
+{% extends 'base_app/base.html' %} {% block title %}Create CVD{% endblock %}
+{%block content %}
+<div class="container mx-auto py-5">
+  <h1 class="text-3xl mb-4">Create CVD Report</h1>
+  <form
+    class="bg-white w-full rounded-lg shadow-lg p-8"
+    method="POST"
+    action="{% url 'cvd_service:create_cvd' %}"
+  >
+    {% csrf_token %}
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="id_first_name"
+        >First Name</label
+      >
+      {{ form.first_name }}
+    </div>
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="id_last_name"
+        >Last Name</label
+      >
+      {{ form.last_name }}
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="id_email"
+        >Email</label
+      >
+      {{ form.email }}
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="id_phone"
+        >Phone</label
+      >
+      {{ form.phone }}
+    </div>
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="id_vulnerability_type"
+        >Vulnerability Type</label
+      >
+      {{ form.vulnerability_type }}
+    </div>
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="id_explanation"
+        >Explanation</label
+      >
+      {{ form.explanation }}
+    </div>
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="id_vulnerability_reason"
+        >Vulnerability Reason</label
+      >
+      {{ form.vulnerability_reason }}
+    </div>
+    <div class="mb-4">
+      <label
+        class="block text-gray-700 text-sm font-bold mb-2"
+        for="id_domain_or_ip"
+        >Domain or IP</label
+      >
+      {{ form.domain_or_ip }}
+    </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="id_pgp_key"
+        >PGP Key</label
+      >
+      {{ form.pgp_key }}
+    </div>
+    <div class="flex items-center justify-between">
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        type="submit"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}
